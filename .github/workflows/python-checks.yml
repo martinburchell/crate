@@ -27,3 +27,4 @@ jobs:
             - name: "Python checks: Windows"
               if: matrix.os == 'windows-latest'
               run: ./github_action_scripts/python_checks.bat
+              shell: cmd
