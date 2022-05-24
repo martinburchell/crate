@@ -1,6 +1,7 @@
+echo on
 cd %GITHUB_WORKSPACE%
-python -m venv "%HOME%\venv"
-%HOME%\venv\Scripts\activate
+python -m venv "%USERPROFILE%\venv"
+%USERPROFILE%\venv\Scripts\activate
 python -VV
 python -m site
 python -m pip install -U pip
