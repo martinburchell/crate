@@ -20,5 +20,11 @@ jobs:
             - uses: actions/setup-python@v2
               with:
                   python-version: ${{ matrix.python-version }}
-            - name: Pip install and tests
+            - name: "Python checks: Ubuntu"
+              if: matrix.os == 'ubuntu-latest'
               run: ${GITHUB_WORKSPACE}/github_action_scripts/python_checks.sh
+              shell: bash
+            - name: "Python checks: Windows"
+              if: matrix.os == 'windows-latest'
+                %GITHUB_WORKSPACE%\github_action_scripts\python_checks.bat
+              shell: cmd
