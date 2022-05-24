@@ -8,6 +8,7 @@ on:
             - '**.py'
             - .github/workflows/python-checks.yml
             - github_action_scripts/python_checks.sh
+            - github_action_scripts/python_checks.bat
 jobs:
     pip-install-and-tests:
         runs-on: ${{ matrix.os }}
