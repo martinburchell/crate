@@ -1,14 +1,15 @@
-echo on
-cd %GITHUB_WORKSPACE%
-python -m venv "%USERPROFILE%\venv" || exit /b %errorlevel%
-%USERPROFILE%\venv\Scripts\activate || exit /b %errorlevel%
-python -VV || exit /b %errorlevel%
-python -m site || exit /b %errorlevel%
-python -m pip install -U pip || exit /b %errorlevel%
+$ErrorActionPreference = "Stop"
+python -m venv "$Env:USERPROFILE\venv"
+$Env:USERPROFILE\venv\Scripts\activate.bat
+python -VV
+python -m site
+python -m pip install -U pip
 echo dumping pre-installed packages
-python -m pip freeze || exit /b %errorlevel%
+python -m pip freeze
 echo installing pip packages
-python -m pip install -e . || exit /b %errorlevel%
+python -m pip install -e .
 echo running tests
 set CRATE_RUN_WITHOUT_LOCAL_SETTINGS=True
-pytest -v || exit /b %errorlevel%
+crate_anon_demo_config > "$Env:USERPROFILE\crate_anon_config,ini"
+Set-Variable -Name "CRATE_ANON_CONFIG" -Value "$Env:USERPROFILE\crate_anon_config.ini"
+pytest -v
