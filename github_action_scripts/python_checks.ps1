@@ -1,6 +1,7 @@
 $ErrorActionPreference = "Stop"
-python -m venv "$Env:USERPROFILE\venv"
-$Env:USERPROFILE\venv\Scripts\activate.bat
+cd "$env:USERPROFILE"
+python -m venv venv
+.\venv\Scripts\activate
 python -VV
 python -m site
 python -m pip install -U pip
@@ -9,7 +10,8 @@ python -m pip freeze
 echo installing pip packages
 python -m pip install -e .
 echo running tests
-set CRATE_RUN_WITHOUT_LOCAL_SETTINGS=True
-crate_anon_demo_config > "$Env:USERPROFILE\crate_anon_config,ini"
-Set-Variable -Name "CRATE_ANON_CONFIG" -Value "$Env:USERPROFILE\crate_anon_config.ini"
+$env:CRATE_RUN_WITHOUT_LOCAL_SETTINGS = "True"
+$env:CRATE_ANON_CONFIG = "$env:USERPROFILE\crate_anon_config.ini"
+crate_anon_demo_config > "$env:CRATE_ANON_CONFIG"
+cd "$env:GITHUB_WORKSPACE"
 pytest -v
