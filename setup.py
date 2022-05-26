@@ -137,7 +137,8 @@ INSTALL_REQUIRES = [
     "flake8==3.8.4",  # code checks
     "docutils==0.17",  # documentation, 0.18 not compatible with Sphinx
     "mistune<2.0.0",  # API documentation, 2.0.0 not compatible
-    "pytest==7.1.1",  # automatic testing
+    # 7.1 fails on Windows https://github.com/pytest-dev/pytest/issues/9765
+    "pytest==7.0.1",  # automatic testing
     "pytest-django==4.5.2",  # automatic testing
     # Sphinx 4.4.0 gives "more than one target for cross-reference" warning
     # when resolving crate_anon.anonymise.patient.Patient in
