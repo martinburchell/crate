@@ -40,4 +40,3 @@ jobs:
                 set CRATE_RUN_WITHOUT_LOCAL_SETTINGS=True
                 crate_anon_demo_config > %USERPROFILE%\crate_anon_config.ini
                 pytest -v
-              shell: cmd
