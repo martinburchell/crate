@@ -27,8 +27,9 @@ jobs:
             - name: "Python checks: Windows"
               if: matrix.os == 'windows-latest'
               run: |
-                python -m venv "%USERPROFILE%\venv"
-                %USERPROFILE%\venv\Scripts\activate.bat
+                $ErrorActionPreference = "Stop"
+                python -m venv "$Env:USERPROFILE\venv"
+                $Env:USERPROFILE%\venv\Scripts\activate.bat
                 python -VV
                 python -m site
                 python -m pip install -U pip
@@ -38,5 +39,6 @@ jobs:
                 python -m pip install -e .
                 echo running tests
                 set CRATE_RUN_WITHOUT_LOCAL_SETTINGS=True
-                crate_anon_demo_config > %USERPROFILE%\crate_anon_config.ini
+                crate_anon_demo_config > "$Env:USERPROFILE\crate_anon_config,ini"
+                Set-Variable -Name "CRATE_ANON_CONFIG" -Value "$Env:USERPROFILE\crate_anon_config.ini"
                 pytest -v
