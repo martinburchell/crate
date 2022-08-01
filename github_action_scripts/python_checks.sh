@@ -31,4 +31,5 @@ echo checking python for style and errors
 flake8 --config=setup.cfg .
 echo running tests
 export CRATE_RUN_WITHOUT_LOCAL_SETTINGS=True
-pytest -v
+python -m pip install coverage
+pytest -v --cov --cov-report html
